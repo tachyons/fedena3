@@ -4,7 +4,7 @@ development:
       database: fedena_ultimate
       port: 3306
       username: root
-      password: foradian
+      password: mysqlroot
 
 test: &test
       host: localhost
