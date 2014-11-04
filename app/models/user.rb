@@ -15,6 +15,10 @@
 #WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #See the License for the specific language governing permissions and
 #limitations under the License.
+require 'i18n'
+  def t(*args)
+    return I18n.t(*args)
+  end
 
 class User < ActiveRecord::Base
   attr_accessor :password, :role, :old_password, :new_password, :confirm_password
@@ -35,8 +39,8 @@ class User < ActiveRecord::Base
   has_one :student_record,:class_name=>"Student",:foreign_key=>"user_id"
   has_one :employee_record,:class_name=>"Employee",:foreign_key=>"user_id"
 
-  named_scope :active, :conditions => { :is_deleted => false }
-  named_scope :inactive, :conditions => { :is_deleted => true }
+  scope :active, :conditions => { :is_deleted => false }
+  scope :inactive, :conditions => { :is_deleted => true }
 
   def before_save
     self.salt = random_string(8) if self.salt == nil
@@ -50,7 +54,6 @@ class User < ActiveRecord::Base
       self.is_first_login = true
     end
   end
-
   def full_name
     "#{first_name} #{last_name}"
   end

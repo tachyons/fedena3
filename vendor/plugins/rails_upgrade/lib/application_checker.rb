@@ -38,7 +38,7 @@ module Rails
           )
         end
 
-        lines = grep_for("named_scope", "app/models/")
+        lines = grep_for("scope ", "app/models/")
         files = extract_filenames(lines)
 
         unless files.empty?

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
    helper :all
   helper_method :can_access_request?
-  protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
+  #protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
   #filter_parameter_logging :password
   
   before_filter { |c| Authorization.current_user = c.current_user }
@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :dev_mode
   include CustomInPlaceEditing
-
+  before_filter :set_locale
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
   def login_check
     if session[:user_id].present?
       unless (controller_name == "user") and ["first_login_change_password","login","logout","forgot_password"].include? action_name
@@ -119,7 +122,11 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize
+    def t(*args)
+      #do nothing
+    end
     @title = FedenaSetting.company_details[:company_name]
+    super
   end
 
   def message_user
@@ -302,7 +309,9 @@ class ApplicationController < ActionController::Base
     end
     super(options, extra_options, &block)
   end
-
+   def t(*args)
+    return I18n.t.t(*args)
+  end
   def default_time_zone_present_time
     server_time = Time.now
     server_time_to_gmt = server_time.getgm
@@ -327,14 +336,14 @@ class ApplicationController < ActionController::Base
 
   private
   def set_user_language
-    lan = Configuration.find_by_config_key("Locale")
-    I18n.default_locale = :en
-    Translator.fallback(true)
-    if session[:language].nil?
-      I18n.locale = lan.config_value
-    else
-      I18n.locale = session[:language]
-    end
-    News.new.reload_news_bar
-  end
+  #   lan = Configuration.find_by_config_key("Locale")
+  #   I18n.default_locale = :en
+  #   Translator.fallback(true)
+  #   if session[:language].nil?
+  #     I18n.locale = lan.config_value
+  #   else
+  #     I18n.locale = session[:language]
+  #   end
+  #   News.new.reload_news_bar
+   end
 end

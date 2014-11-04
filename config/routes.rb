@@ -1,4 +1,5 @@
 Fedena::Application.routes.draw do
+  root :to => 'user#login'
   resources :grading_levels
   resources :ranking_levels do
     collection do

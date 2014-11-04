@@ -124,7 +124,7 @@
 
 === Other
 
-* Add ability to opt-in for Rails 2.1 feature "named_scope" by calling
+* Add ability to opt-in for Rails 2.1 feature "scope " by calling
   WillPaginate.enable_named_scope (tested in Rails 1.2.6 and 2.0.2)
 * Support complex page parameters like "developers[page]"
 * Move Array#paginate definition to will_paginate/array.rb. You can now easily

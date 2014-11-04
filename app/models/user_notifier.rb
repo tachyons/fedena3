@@ -17,10 +17,18 @@
 #limitations under the License.
 
 class UserNotifier < ActionMailer::Base
+  default :from => "system@example.com"
   def forgot_password(user,current_url)
     setup_email(user,current_url)
     @subject    += 'Reset Password'
     @body[:url]  =  current_url+"/user/reset_password/#{user.reset_password_code}"
+  end
+  def forgot_password(recipient,current_url)
+    @account = recipient
+    @body[:user] = user
+    @body[:url]=  current_url+"/user/reset_password/#{user.reset_password_code}"
+    mail(:to => recipient.email_address_with_name,
+         :subject => "New account information",:body => @body)
   end
 
   protected

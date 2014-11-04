@@ -18,6 +18,9 @@
 
 class UserController < ApplicationController
   layout :choose_layout
+  #layout 'application'
+  #layout :application
+  #render :layout => 'application'
   before_filter :login_required, :except => [:forgot_password, :login, :set_new_password, :reset_password,:first_login_change_password]
   before_filter :only_admin_allowed, :only => [:edit, :create, :index, :edit_privilege, :user_change_password,:delete,:list_user,:all]
   before_filter :protect_user_data, :only => [:profile, :user_change_password]
@@ -33,7 +36,7 @@ class UserController < ApplicationController
   def all
     @users = User.active.all
   end
-  
+
   def list_user
     if params[:user_type] == 'Admin'
       @users = User.active.find(:all, :conditions => {:admin => true}, :order => 'first_name ASC')
@@ -214,7 +217,7 @@ class UserController < ApplicationController
           user.role = user.role_name
           user.save(false)
           url = "#{request.protocol}#{request.host_with_port}"
-          UserNotifier.deliver_forgot_password(user,url)
+          UserNotifier.forgot_password(user,url).deliver
           flash[:notice] = "#{t('flash18')}"
           redirect_to :action => "index"
         else

@@ -5,7 +5,7 @@ require File.expand_path('../boot', __FILE__)
 # APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))  
 
 require 'rails/all'
-require 'translator'
+#require 'translator'
 
 Bundler.require(:default, ::Rails.env) if defined?(Bundler)
 
@@ -15,7 +15,7 @@ module Fedena
     config.encoding = 'utf-8'
     config.time_zone = 'UTC'
     config.filter_parameters += [:password]
-    config.gem 'declarative_authorization', :source => 'http://gemcutter.org'
+    #config.gem 'declarative_authorization', :source => 'http://gemcutter.org'
   
     #config.load_once_paths += %W( #{RAILS_ROOT}/lib )
     config.autoload_paths += %W(#{Rails.root}/lib) 
