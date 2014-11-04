@@ -1,0 +1,548 @@
+(in /home/user/projects/fedena)
+[31m[1mDeprecated session secret setting[0m
+[37mPreviously, session secret was set directly on ActionController::Base; it's now config.secret_token.
+[1mMore information:[0m [36mhttp://lindsaar.net/2010/4/7/rails_3_session_secret_and_session_store
+
+[37mThe culprits: 
+[33m	- config/initializers/session_store.rb
+[0m
+[31m[1mOld Rails generator API[0m
+[37mA plugin in the app is using the old generator API (a new one may be available at http://github.com/trydionel/rails3-generators).
+[1mMore information:[0m [36mhttp://blog.plataformatec.com.br/2010/01/discovering-rails-3-generators/
+
+[37mThe culprits: 
+[33m	- vendor/plugins/delayed_job/generators/
+[33m	- vendor/plugins/delayed_job/generators/delayed_job_migration/
+[33m	- vendor/plugins/paperclip/generators/
+[33m	- vendor/plugins/paperclip/generators/paperclip/
+[33m	- vendor/plugins/rspec-rails/generators/
+[33m	- vendor/plugins/rspec-rails/generators/rspec_model/
+[33m	- vendor/plugins/rspec-rails/generators/rspec/
+[33m	- vendor/plugins/rspec-rails/generators/rspec_controller/
+[33m	- vendor/plugins/rspec-rails/generators/integration_spec/
+[33m	- vendor/plugins/rspec-rails/generators/rspec_scaffold/
+[33m	- vendor/plugins/wicked_pdf/generators/
+[33m	- vendor/plugins/wicked_pdf/generators/wicked_pdf/
+[0m
+[31m[1mOld router API[0m
+[37mThe router API has totally changed.
+[1mMore information:[0m [36mhttp://yehudakatz.com/2009/12/26/the-rails-3-router-rack-it-up/
+
+[37mThe culprits: 
+[33m	- config/routes.rb
+[0m
+[31m[1mDeprecated ActionMailer attribute :sent_on[0m
+[37mUsing the new mailer API, you can specify :date to the mail method.
+[1mMore information:[0m [36mhttp://stackoverflow.com/questions/7367185/weird-error-when-delivering-mail-undefined-method-index-for-2011-09-09-2215
+
+[37mThe culprits: 
+[33m	- app/models/fedena_mailer.rb
+[33m	- app/models/user_notifier.rb
+[33m	- app/views/reminder/view_sent_reminder.erb
+[33m	- app/views/reminder/view_reminder.erb
+[0m
+[31m[1mKnown broken plugins[0m
+[37mAt least one plugin in your app is broken (according to the wiki).  Most of project maintainers are rapidly working towards compatibility, but do be aware you may encounter issues.
+[1mMore information:[0m [36mhttp://wiki.rubyonrails.org/rails/version3/plugins_and_gems
+
+[37mThe culprits: 
+[33m	- rspec-rails
+[33m	- searchlogic
+[0m
+[31m[1mDeprecated test_help path[0m
+[37mYou now must require 'rails/test_help' not just 'test_help'.
+[1mMore information:[0m [36mhttp://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices
+
+[37mThe culprits: 
+[33m	- test/test_helper.rb
+[0m
+[31m[1mDeprecated filter_parameter_logging calls[0m
+[37mThe list of filtered parameters are now stored in /config/application.rb. For example: config.filter_parameters += [:password]
+[1mMore information:[0m [36mhttp://asciicasts.com/episodes/224-controllers-in-rails-3
+
+[37mThe culprits: 
+[33m	- app/controllers/application_controller.rb
+[0m
+[31m[1mNew file needed: config/application.rb[0m
+[37mYou need to add a config/application.rb.
+[1mMore information:[0m [36mhttp://omgbloglol.com/post/353978923/the-path-to-rails-3-approaching-the-upgrade
+
+[37mThe culprits: 
+[33m	- config/application.rb
+[0m
+[31m[1mOld environment.rb[0m
+[37menvironment.rb doesn't do what it used to; you'll need to move some of that into application.rb.
+[1mMore information:[0m [36mhttp://omgbloglol.com/post/353978923/the-path-to-rails-3-approaching-the-upgrade
+
+[37mThe culprits: 
+[33m	- config/environment.rb
+[0m
+[31m[1mDeprecated ERb helper calls[0m
+[37mBlock helpers that use concat (e.g., form_for) should use <%= instead of <%.  The current form will continue to work for now, but you will get deprecation warnings since this form will go away in the future.
+[1mMore information:[0m [36mhttp://weblog.rubyonrails.org/
+
+[37mThe culprits: 
+[33m	- app/views/archived_student/student_report.html.erb
+[33m	- app/views/attendance_reports/_report.html.erb
+[33m	- app/views/attendance_reports/advance_search.html.erb
+[33m	- app/views/attendance_reports/filter.html.erb
+[33m	- app/views/batch_transfers/graduation.html.erb
+[33m	- app/views/batch_transfers/show.html.erb
+[33m	- app/views/batches/edit.html.erb
+[33m	- app/views/batches/new.html.erb
+[33m	- app/views/cce_reports/create_reports.html.erb
+[33m	- app/views/cce_weightages/assign_courses.html.erb
+[33m	- app/views/class_designations/_class_edit_form.html.erb
+[33m	- app/views/class_designations/_class_form.html.erb
+[33m	- app/views/class_designations/_course_class_designations.html.erb
+[33m	- app/views/configuration/add_weekly_holidays.html.erb
+[33m	- app/views/configuration/settings.html.erb
+[33m	- app/views/course/email.erb
+[33m	- app/views/courses/_batch_group_edit_form.html.erb
+[33m	- app/views/courses/_batch_group_form.html.erb
+[33m	- app/views/courses/assign_subject_amount.erb
+[33m	- app/views/courses/edit.html.erb
+[33m	- app/views/courses/edit_subject_amount.erb
+[33m	- app/views/courses/grouped_batches.html.erb
+[33m	- app/views/courses/new.html.erb
+[33m	- app/views/elective_groups/edit.html.erb
+[33m	- app/views/elective_groups/new.html.erb
+[33m	- app/views/employee/_edit_leave_count.erb
+[33m	- app/views/employee/admission2.erb
+[33m	- app/views/employee/admission3.erb
+[33m	- app/views/employee/admission3_1.erb
+[33m	- app/views/employee/admission4.erb
+[33m	- app/views/employee/advanced_search.html.erb
+[33m	- app/views/employee/change_reporting_manager.erb
+[33m	- app/views/employee/change_to_former.html.erb
+[33m	- app/views/employee/create_monthly_payslip.erb
+[33m	- app/views/employee/department_payslip.html.erb
+[33m	- app/views/employee/edit1.erb
+[33m	- app/views/employee/edit2.erb
+[33m	- app/views/employee/edit3.erb
+[33m	- app/views/employee/edit3_1.erb
+[33m	- app/views/employee/edit_contact.erb
+[33m	- app/views/employee/edit_monthly_payslip.erb
+[33m	- app/views/employee/edit_personal.erb
+[33m	- app/views/employee/edit_privilege.html.erb
+[33m	- app/views/employee/edit_rejected_payslip.html.erb
+[33m	- app/views/employee/leave_management.erb
+[33m	- app/views/employee/remove.html.erb
+[33m	- app/views/employee/remove_subordinate_employee.erb
+[33m	- app/views/employee_attendance/_approve_remark_form.erb
+[33m	- app/views/employee_attendance/_deny_remark_form.erb
+[33m	- app/views/employee_attendance/_department_list.erb
+[33m	- app/views/employee_attendance/add_leave_types.erb
+[33m	- app/views/employee_attendance/apply_leave.erb
+[33m	- app/views/employee_attendance/edit_leave_types.erb
+[33m	- app/views/employee_attendance/employee_leave_reset_by_department.erb
+[33m	- app/views/employee_attendance/leave_reset_settings.erb
+[33m	- app/views/employee_attendance/leaves.erb
+[33m	- app/views/employee_attendance/register.erb
+[33m	- app/views/employee_attendance/report.erb
+[33m	- app/views/event/_select_course.erb
+[33m	- app/views/event/_select_employee_department.erb
+[33m	- app/views/event/edit_event.erb
+[33m	- app/views/event/index.erb
+[33m	- app/views/exam/_exam_grade_form.erb
+[33m	- app/views/exam/_exam_marks_form.erb
+[33m	- app/views/exam/attendance_rank.html.erb
+[33m	- app/views/exam/batch_rank.html.erb
+[33m	- app/views/exam/combined_report.html.erb
+[33m	- app/views/exam/course_rank.html.erb
+[33m	- app/views/exam/edit_previous_marks.html.erb
+[33m	- app/views/exam/exam_wise_report.html.erb
+[33m	- app/views/exam/generate_previous_reports.html.erb
+[33m	- app/views/exam/generate_reports.html.erb
+[33m	- app/views/exam/grouped_exam_report.html.erb
+[33m	- app/views/exam/grouping.html.erb
+[33m	- app/views/exam/ranking_level_report.html.erb
+[33m	- app/views/exam/subject_rank.html.erb
+[33m	- app/views/exam/subject_wise_report.html.erb
+[33m	- app/views/exam/transcript.html.erb
+[33m	- app/views/exam_groups/edit.html.erb
+[33m	- app/views/exam_reports/archived_exam_wise_report.html.erb
+[33m	- app/views/exams/edit.html.erb
+[33m	- app/views/exams/new.html.erb
+[33m	- app/views/exams/show.html.erb
+[33m	- app/views/finance/_accept_form.erb
+[33m	- app/views/finance/_defaulters_fine_submission.html.erb
+[33m	- app/views/finance/_fees_student_specific.html.erb
+[33m	- app/views/finance/_reject_form.html.erb
+[33m	- app/views/finance/_transaction_create_form.html.erb
+[33m	- app/views/finance/_transaction_edit_form.html.erb
+[33m	- app/views/finance/additional_fees_create_form.html.erb
+[33m	- app/views/finance/compare_date.html.erb
+[33m	- app/views/finance/compare_report.html.erb
+[33m	- app/views/finance/donation.erb
+[33m	- app/views/finance/donation_edit.erb
+[33m	- app/views/finance/expense_list.html.erb
+[33m	- app/views/finance/fees_defaulters.html.erb
+[33m	- app/views/finance/fees_particulars_new.html.erb
+[33m	- app/views/finance/fees_submission_batch.html.erb
+[33m	- app/views/finance/income_list.html.erb
+[33m	- app/views/finance/monthly_report.html.erb
+[33m	- app/views/finance/pay_fees_defaulters.html.erb
+[33m	- app/views/finance/update_fees_specific.html.erb
+[33m	- app/views/finance/view_monthly_payslip.html.erb
+[33m	- app/views/news/add.html.erb
+[33m	- app/views/news/edit.html.erb
+[33m	- app/views/payroll/add_category.erb
+[33m	- app/views/payroll/edit_category.erb
+[33m	- app/views/payroll/edit_payroll_details.erb
+[33m	- app/views/payroll/manage_payroll.erb
+[33m	- app/views/ranking_levels/_course_ranking_levels.html.erb
+[33m	- app/views/ranking_levels/_rank_edit_form.html.erb
+[33m	- app/views/ranking_levels/_rank_form.html.erb
+[33m	- app/views/reminder/create_reminder.erb
+[33m	- app/views/reminder/index.erb
+[33m	- app/views/reminder/sent_reminder.erb
+[33m	- app/views/reminder/view_reminder.erb
+[33m	- app/views/sms/settings.html.erb
+[33m	- app/views/sms_settings/index.html.erb
+[33m	- app/views/student/_previous_subject.html.erb
+[33m	- app/views/student/_student_category_create_form.erb
+[33m	- app/views/student/add_guardian.erb
+[33m	- app/views/student/admission1.html.erb
+[33m	- app/views/student/admission2.html.erb
+[33m	- app/views/student/admission3.erb
+[33m	- app/views/student/admission3_1.erb
+[33m	- app/views/student/admission4.erb
+[33m	- app/views/student/advanced_search.erb
+[33m	- app/views/student/change_to_former.erb
+[33m	- app/views/student/edit.erb
+[33m	- app/views/student/edit_admission4.erb
+[33m	- app/views/student/edit_guardian.erb
+[33m	- app/views/student/email.erb
+[33m	- app/views/student/fees.erb
+[33m	- app/views/student/previous_data.html.erb
+[33m	- app/views/student/previous_data_edit.html.erb
+[33m	- app/views/student/remove.erb
+[33m	- app/views/student_attendance/student.html.erb
+[33m	- app/views/student_attendance/student_report.html.erb
+[33m	- app/views/timetable/_generate.html.erb
+[33m	- app/views/timetable/employee_timetable.html.erb
+[33m	- app/views/timetable/new_timetable.html.erb
+[33m	- app/views/timetable/select_class.erb
+[33m	- app/views/timetable/select_class2.erb
+[33m	- app/views/timetable/student_view.erb
+[33m	- app/views/timetable/teachers_timetable.html.erb
+[33m	- app/views/timetable/update_timetable.html.erb
+[33m	- app/views/timetable/view.erb
+[33m	- app/views/timetable/weekdays.erb
+[33m	- app/views/timetable/work_allotment.html.erb
+[33m	- app/views/timetable_entries/_select_batch.html_1.erb
+[33m	- app/views/user/change_password.erb
+[33m	- app/views/user/create.erb
+[33m	- app/views/user/edit.erb
+[33m	- app/views/user/edit_privilege.html.erb
+[33m	- app/views/user/first_login_change_password.erb
+[33m	- app/views/user/forgot_password.erb
+[33m	- app/views/user/login.html.erb
+[33m	- app/views/user/set_new_password.erb
+[33m	- app/views/user/user_change_password.erb
+[33m	- app/views/weekday/_weekdays.html.erb
+[33m	- app/views/employee/add_additional_details.erb
+[33m	- app/views/student/add_additional_details.erb
+[0m
+[31m[1mDeprecated constant(s)[0m
+[37mConstants like RAILS_ENV, RAILS_ROOT, and RAILS_DEFAULT_LOGGER are now deprecated.
+[1mMore information:[0m [36mhttp://litanyagainstfear.com/blog/2010/02/03/the-rails-module/
+
+[37mThe culprits: 
+[33m	- lib/fedena_setting.rb
+[33m	- app/models/configuration.rb
+[33m	- app/helpers/application_helper.rb
+[33m	- app/views/layouts/pdf.html.erb
+[33m	- lib/tasks/rspec.rake
+[33m	- lib/tasks/reek.rake
+[33m	- lib/fedena_plugin.rb
+[0m
+[31m[1mSoon-to-be-deprecated ActiveRecord calls[0m
+[37mMethods such as find(:all), find(:first), finds with conditions, and the :joins option will soon be deprecated.
+[1mMore information:[0m [36mhttp://m.onkey.org/2010/1/22/active-record-query-interface
+
+[37mThe culprits: 
+[33m	- app/controllers/employee_attendance_controller.rb
+[33m	- app/controllers/batches_controller.rb
+[33m	- app/controllers/exam_controller.rb
+[33m	- app/controllers/timetable_entries_controller.rb
+[33m	- app/controllers/timetable_controller.rb
+[33m	- app/controllers/exams_controller.rb
+[33m	- app/controllers/batch_transfers_controller.rb
+[33m	- app/controllers/employee_controller.rb
+[33m	- app/models/exam_score.rb
+[33m	- app/models/exam.rb
+[33m	- app/models/hr/employee.rb
+[33m	- app/models/hr/monthly_payslip.rb
+[33m	- app/models/student.rb
+[33m	- app/models/class_timing.rb
+[33m	- app/models/timetable.rb
+[33m	- app/views/timetable/view.erb
+[33m	- app/controllers/employee_attendance_controller.rb
+[33m	- app/controllers/archived_student_controller.rb
+[0m
+[31m[1mnamed_scope is now just scope[0m
+[37mThe named_scope method has been renamed to just scope.
+[1mMore information:[0m [36mhttp://github.com/rails/rails/commit/d60bb0a9e4be2ac0a9de9a69041a4ddc2e0cc914
+
+[37mThe culprits: 
+[33m	- app/models/event.rb
+[33m	- app/models/course.rb
+[33m	- app/models/subject.rb
+[33m	- app/models/language.rb
+[33m	- app/models/hr/employee_grade.rb
+[33m	- app/models/hr/employee_department.rb
+[33m	- app/models/hr/employee_position.rb
+[33m	- app/models/hr/employee_category.rb
+[33m	- app/models/weekday.rb
+[33m	- app/models/attendance.rb
+[33m	- app/models/subject_leave.rb
+[33m	- app/models/grading_level.rb
+[33m	- app/models/student_category.rb
+[33m	- app/models/batch.rb
+[33m	- app/models/user.rb
+[33m	- app/models/fa_criteria.rb
+[33m	- app/models/cce_report.rb
+[33m	- app/models/observation_group.rb
+[33m	- app/models/student.rb
+[33m	- app/models/class_timing.rb
+[33m	- app/models/observation.rb
+[33m	- app/models/fa_group.rb
+[33m	- app/models/assessment_score.rb
+[33m	- app/models/finance/finance_transaction_category.rb
+[0m
+[31m[1mDeprecated AJAX helper calls[0m
+[37mAJAX javascript helpers have been switched to be unobtrusive and use :remote => true instead of having a seperate function to handle remote requests.
+[1mMore information:[0m [36mhttp://blog.jordanwest.me/modest-rubyist-archive/rails-3-ujs-and-csrf-meta-tags
+
+[37mThe culprits: 
+[33m	- app/views/archived_employee/profile.erb
+[33m	- app/views/assessment_tools/_assessment_tools.erb
+[33m	- app/views/assessment_tools/index.html.erb
+[33m	- app/views/attendances/_attendance_cell.html.erb
+[33m	- app/views/attendances/_edit.html.erb
+[33m	- app/views/attendances/_register.html.erb
+[33m	- app/views/batch_transfers/_previous_batch_subjects.erb
+[33m	- app/views/batch_transfers/subject_transfer.html.erb
+[33m	- app/views/batches/_employee_list.erb
+[33m	- app/views/calendar/_month.erb
+[33m	- app/views/cce_exam_categories/_categories.erb
+[33m	- app/views/cce_exam_categories/index.html.erb
+[33m	- app/views/cce_grade_sets/_grade_sets.erb
+[33m	- app/views/cce_grade_sets/_grades.erb
+[33m	- app/views/cce_grade_sets/index.html.erb
+[33m	- app/views/cce_grade_sets/show.html.erb
+[33m	- app/views/cce_weightages/_weightages.erb
+[33m	- app/views/cce_weightages/index.html.erb
+[33m	- app/views/class_designations/_class_designations.html.erb
+[33m	- app/views/class_timings/_show_batch_timing.erb
+[33m	- app/views/courses/_batch_groups.html.erb
+[33m	- app/views/descriptive_indicators/_descriptive_indicators.erb
+[33m	- app/views/descriptive_indicators/index.html.erb
+[33m	- app/views/elective_groups/show.html.erb
+[33m	- app/views/employee/_additional_fields.erb
+[33m	- app/views/employee/_attendance_report.erb
+[33m	- app/views/employee/_employee_list.erb
+[33m	- app/views/employee/_list_payslip_category.erb
+[33m	- app/views/employee/_payslip_category_list.erb
+[33m	- app/views/employee/_select_department.erb
+[33m	- app/views/employee/leave_management.erb
+[33m	- app/views/employee/leave_management_personal.erb
+[33m	- app/views/employee/leave_management_span.erb
+[33m	- app/views/employee/payslip.erb
+[33m	- app/views/employee/profile.erb
+[33m	- app/views/employee_attendance/employee_leave_details.erb
+[33m	- app/views/employee_attendance/employee_leave_reset_all.erb
+[33m	- app/views/employee_attendance/leave_app.erb
+[33m	- app/views/employee_attendance/leave_application.erb
+[33m	- app/views/employee_attendance/leaves.erb
+[33m	- app/views/employee_attendances/_attendance_cell.html.erb
+[33m	- app/views/employee_attendances/_edit.html.erb
+[33m	- app/views/employee_attendances/_register.html.erb
+[33m	- app/views/event/_event_batch.erb
+[33m	- app/views/event/_event_department.erb
+[33m	- app/views/event/event_group.erb
+[33m	- app/views/exam_groups/index.html.erb
+[33m	- app/views/exam_groups/show.html.erb
+[33m	- app/views/fa_groups/_fa_criterias.erb
+[33m	- app/views/fa_groups/_fa_groups.erb
+[33m	- app/views/fa_groups/index.html.erb
+[33m	- app/views/fa_groups/show.html.erb
+[33m	- app/views/finance/_additional_fees_list.html.erb
+[33m	- app/views/finance/_additional_particulars_list.erb
+[33m	- app/views/finance/_asset_list.html.erb
+[33m	- app/views/finance/_category_list.html.erb
+[33m	- app/views/finance/_fee_collection_dates_batch.html.erb
+[33m	- app/views/finance/_fee_collection_list.html.erb
+[33m	- app/views/finance/_fees_particulars_list.html.erb
+[33m	- app/views/finance/_liability_list.html.erb
+[33m	- app/views/finance/_master_category_list.html.erb
+[33m	- app/views/finance/_master_particulars_list.html.erb
+[33m	- app/views/finance/_show_fee_discounts.erb
+[33m	- app/views/finance/_student_fees_submission.html.erb
+[33m	- app/views/finance/_transaction_triggers_list.html.erb
+[33m	- app/views/finance/_view_payslip.html.erb
+[33m	- app/views/finance/additional_particulars.html.erb
+[33m	- app/views/finance/categories.html.erb
+[33m	- app/views/finance/master_category_particulars.html.erb
+[33m	- app/views/finance/master_fees.html.erb
+[33m	- app/views/finance/view_employee_payslip.html.erb
+[33m	- app/views/grading_levels/_grading_levels.html.erb
+[33m	- app/views/news/_comment.erb
+[33m	- app/views/observation_groups/_observation_groups.erb
+[33m	- app/views/observation_groups/_observations.erb
+[33m	- app/views/observation_groups/index.html.erb
+[33m	- app/views/observation_groups/show.html.erb
+[33m	- app/views/payroll/_category.erb
+[33m	- app/views/ranking_levels/_course_ranking_levels.html.erb
+[33m	- app/views/ranking_levels/_rank_edit_form.html.erb
+[33m	- app/views/ranking_levels/_rank_form.html.erb
+[33m	- app/views/ranking_levels/_ranking_levels.html.erb
+[33m	- app/views/reminder/create_reminder.erb
+[33m	- app/views/sms/index.html.erb
+[33m	- app/views/student/_additional_fields.erb
+[33m	- app/views/student/_all_assign.erb
+[33m	- app/views/student/_assign_students.html.erb
+[33m	- app/views/student/_previous_subject_added.html.erb
+[33m	- app/views/student/_previous_subject_added_new.html.erb
+[33m	- app/views/student/_student_category_list.erb
+[33m	- app/views/student/_unassign_students.html.erb
+[33m	- app/views/student/electives.html.erb
+[33m	- app/views/student/previous_data.html.erb
+[33m	- app/views/student/previous_data_edit.html.erb
+[33m	- app/views/subjects/_subjects.html.erb
+[33m	- app/views/timetable/_edit_tt_multiple.erb
+[33m	- app/views/timetable/_edit_tt_multiple2.erb
+[33m	- app/views/timetable/_extra_class_form.html.erb
+[33m	- app/views/timetable/_extra_class_update.html.erb
+[33m	- app/views/timetable/_table.html.erb
+[33m	- app/views/timetable_entries/_new_entry.html.erb
+[33m	- app/views/timetable_entries/_timetable_box.html.erb
+[33m	- app/views/employee/_payslip_category_form.erb
+[33m	- app/views/student/_student_category_edit_form.erb
+[33m	- app/views/archived_student/student_report.html.erb
+[33m	- app/views/class_designations/_class_edit_form.html.erb
+[33m	- app/views/class_designations/_class_form.html.erb
+[33m	- app/views/class_designations/_course_class_designations.html.erb
+[33m	- app/views/courses/_batch_group_edit_form.html.erb
+[33m	- app/views/courses/_batch_group_form.html.erb
+[33m	- app/views/courses/grouped_batches.html.erb
+[33m	- app/views/employee/_edit_leave_count.erb
+[33m	- app/views/employee_attendance/leave_history.erb
+[33m	- app/views/finance/_accept_form.erb
+[33m	- app/views/finance/_reject_form.html.erb
+[33m	- app/views/ranking_levels/_course_ranking_levels.html.erb
+[33m	- app/views/ranking_levels/_rank_edit_form.html.erb
+[33m	- app/views/ranking_levels/_rank_form.html.erb
+[33m	- app/views/sms/_all_sms_box.erb
+[33m	- app/views/sms/batches.html.erb
+[33m	- app/views/sms/departments.html.erb
+[33m	- app/views/sms/employees.html.erb
+[33m	- app/views/sms/students.html.erb
+[33m	- app/views/student/_previous_subject.html.erb
+[33m	- app/views/student/change_to_former.erb
+[33m	- app/views/student_attendance/student.html.erb
+[33m	- app/views/student_attendance/student_report.html.erb
+[33m	- app/views/assessment_scores/_fa_sheet.erb
+[33m	- app/views/assessment_scores/_observation_sheet.erb
+[33m	- app/views/assessment_tools/_edit.erb
+[33m	- app/views/assessment_tools/_new.erb
+[33m	- app/views/attendances/_edit.html.erb
+[33m	- app/views/attendances/_new.html.erb
+[33m	- app/views/batch_transfers/_new.html.erb
+[33m	- app/views/cce_exam_categories/_edit.erb
+[33m	- app/views/cce_exam_categories/_new.erb
+[33m	- app/views/cce_grade_sets/_edit.erb
+[33m	- app/views/cce_grade_sets/_edit_grade.erb
+[33m	- app/views/cce_grade_sets/_new.erb
+[33m	- app/views/cce_grade_sets/_new_grade.erb
+[33m	- app/views/cce_weightages/_edit.erb
+[33m	- app/views/cce_weightages/_new.erb
+[33m	- app/views/cce_weightages/_select_weightage.erb
+[33m	- app/views/class_timings/_edit.html.erb
+[33m	- app/views/class_timings/_new.html.erb
+[33m	- app/views/descriptive_indicators/_edit.erb
+[33m	- app/views/descriptive_indicators/_new.erb
+[33m	- app/views/employee/_one_click_payslip_date.erb
+[33m	- app/views/employee/_one_click_payslip_revert_date.erb
+[33m	- app/views/employee_attendances/_edit.html.erb
+[33m	- app/views/employee_attendances/_new.html.erb
+[33m	- app/views/exam_groups/new.html.erb
+[33m	- app/views/fa_groups/_edit.erb
+[33m	- app/views/fa_groups/_edit_fa_criteria.erb
+[33m	- app/views/fa_groups/_new.erb
+[33m	- app/views/fa_groups/_new_fa_criteria.erb
+[33m	- app/views/fa_groups/_select_fa_groups.erb
+[33m	- app/views/finance/_add_particulars_create_form.html.erb
+[33m	- app/views/finance/_add_particulars_edit_form.html.erb
+[33m	- app/views/finance/_additional_fees_edit_form.html.erb
+[33m	- app/views/finance/_asset_edit_form.html.erb
+[33m	- app/views/finance/_batch_wise_discount_form.erb
+[33m	- app/views/finance/_category_create_form.html.erb
+[33m	- app/views/finance/_category_edit_form.html.erb
+[33m	- app/views/finance/_category_wise_discount_form.erb
+[33m	- app/views/finance/_child_fee_element_form.erb
+[33m	- app/views/finance/_create_asset_form.html.erb
+[33m	- app/views/finance/_create_liability_form.html.erb
+[33m	- app/views/finance/_fee_collection_create_form.html.erb
+[33m	- app/views/finance/_fee_collection_edit.html.erb
+[33m	- app/views/finance/_fee_discount_edit_form.html.erb
+[33m	- app/views/finance/_fee_particulars_create_form.html.erb
+[33m	- app/views/finance/_fees_submission_form.erb
+[33m	- app/views/finance/_fine_submission.html.erb
+[33m	- app/views/finance/_liability_edit_form.html.erb
+[33m	- app/views/finance/_master_category_create_form.html.erb
+[33m	- app/views/finance/_master_category_edit_form.html.erb
+[33m	- app/views/finance/_master_category_particulars_edit_form.html.erb
+[33m	- app/views/finance/_student_fees_submission.html.erb
+[33m	- app/views/finance/_student_fine_submission.html.erb
+[33m	- app/views/finance/_student_wise_discount_form.erb
+[33m	- app/views/finance/_transaction_trigger_create_form.html.erb
+[33m	- app/views/finance/_transaction_trigger_edit_form.html.erb
+[33m	- app/views/grading_levels/_edit.html.erb
+[33m	- app/views/grading_levels/_new.html.erb
+[33m	- app/views/news/view.erb
+[33m	- app/views/observation_groups/_edit.erb
+[33m	- app/views/observation_groups/_edit_observation.erb
+[33m	- app/views/observation_groups/_new.erb
+[33m	- app/views/observation_groups/_new_observation.erb
+[33m	- app/views/observation_groups/_select_observation_group.erb
+[33m	- app/views/reminder/_send_reminder.erb
+[33m	- app/views/subjects/_edit.html.erb
+[33m	- app/views/subjects/_new.html.erb
+[33m	- app/views/timetable/_extra_class_edit.html.erb
+[33m	- app/views/timetable/extra_class.html.erb
+[33m	- app/views/timetable_entries/new.html.erb
+[33m	- app/views/weekday/_new.html.erb
+[0m
+[31m[1mOld gem bundling (config.gems)[0m
+[37mThe old way of bundling is gone now.  You need a Gemfile for bundler.
+[1mMore information:[0m [36mhttp://omgbloglol.com/post/353978923/the-path-to-rails-3-approaching-the-upgrade
+
+[37mThe culprits: 
+[33m	- config/environment.rb
+[33m	- config/environments/cucumber.rb
+[33m	- config/environments/test.rb
+[0m
+[31m[1mDeprecated ActionMailer API[0m
+[37mYou're using the old ActionMailer API to send e-mails in a controller, model, or observer.
+[1mMore information:[0m [36mhttp://lindsaar.net/2010/1/26/new-actionmailer-api-in-rails-3
+
+[37mThe culprits: 
+[33m	- app/controllers/student_controller.rb
+[33m	- app/controllers/user_controller.rb
+[0m
+[31m[1mOld ActionMailer class API[0m
+[37mYou're using the old API in a mailer class.
+[1mMore information:[0m [36mhttp://lindsaar.net/2010/1/26/new-actionmailer-api-in-rails-3
+
+[37mThe culprits: 
+[33m	- app/models/fedena_mailer.rb
+[33m	- app/models/user_notifier.rb
+[33m	- app/models/fedena_mailer.rb
+[33m	- app/models/user_notifier.rb
+[33m	- app/models/exam_group.rb
+[33m	- app/models/fedena_mailer.rb
+[33m	- app/models/user_notifier.rb
+[0m

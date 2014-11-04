@@ -16,6 +16,9 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
+<% def translate(template)
+    return template;
+ end %>
 
 <div id="wrapper">
   <div id="top_logo">
@@ -25,16 +28,16 @@
   <div id="login_strip"></div>
   <div id="login_area_bg">
 
-    <% form_for :user do |form| %>
+    <%= form_for :user do |form| %>
 
       <div id="login_area">
-        <label for="username"><%= t('username') %></label>
+        <label for="username"><%= translate('username') %></label>
         <div id="username_textbox_bg">
           <%= form.text_field :username,
             :maxlength => 40%>
         </div>
 
-        <label for="password"><%= t('password') %></label>
+        <label for="password"><%= translate('password') %></label>
         <div id="password_textbox_bg">
           <%= form.password_field :password %>
         </div>
@@ -46,11 +49,11 @@
         </div>
 
         <div id="submit_area">
-          <%= submit_tag t('login'), :class => "submit" %>
+          <%= submit_tag translate('login'), :class => "submit" %>
         </div>
 
         <label for="forgot_password" class="forgot_password_link">
-          <%= link_to t('forgot_password'),
+          <%= link_to translate('forgot_password'),
             :controller => "user",
             :action => "forgot_password" %>
         </label>
@@ -68,7 +71,7 @@
 <div id="footer">
   <div id="footer_logo">
     <div id="powered_by">
-      <%= t('powered_by') %> <a href=<%= "#{FedenaSetting.company_details[:company_url]}" %> target="_blank"><%= FedenaSetting.company_details[:company_name] %></a>
+      <%= translate('powered_by') %> <a href=<%= "#{FedenaSetting.company_details[:company_url]}" %> target="_blank"><%= FedenaSetting.company_details[:company_name] %></a>
     </div>
   </div>
 </div>

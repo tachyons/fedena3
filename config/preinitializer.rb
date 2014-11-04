@@ -1,6 +1,10 @@
 begin
   require 'rubygems'
   require 'bundler'
+   require 'action_view'
+  # require 'action_view/all'
+  require 'action_view/helpers'
+
   #gem 'i18n', "~> 0.4.0"
 rescue LoadError
   raise "Could not load the bundler gem. Install it with `gem install bundler`."
