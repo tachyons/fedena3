@@ -19,7 +19,7 @@
 
 
 <div class="linker">
-  <%= link_to_remote "#{t('add')}", :url => { :action => 'new', :id => @batch } %>
+  <%= link_to "#{t('add')}",  { :action => 'new', :id => @batch }, :remote => true %>
 </div>
 
 <% unless @class_timings.empty? %>
@@ -40,11 +40,11 @@
           :url => edit_class_timing_path(class_timing), :method => 'get' ) %> |
     <% @tt = PeriodEntry.find_all_by_class_timing_id(class_timing.id ) %>
   <% if @tt.empty? %>
-    <%= link_to_remote("#{t('delete_text')}",
+    <%= link_to("#{t('delete_text')}",
                 :url => class_timing_path(class_timing),
                 :method => 'delete',
                 :confirm => "#{t('confirm_msg')}",
-                :update => "class-timing-#{class_timing.id}") %>
+                :update => "class-timing-#{class_timing.id}, :remote => true") %>
               <% else %>
           <s><%= t('delete_text') %></s>
         <% end %></small></td>

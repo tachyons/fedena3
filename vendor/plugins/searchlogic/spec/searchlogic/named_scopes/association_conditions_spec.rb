@@ -10,13 +10,13 @@ describe Searchlogic::NamedScopes::AssociationConditions do
   end
 
   it "should allow the use of foreign pre-existing named scopes" do
-    User.named_scope :uname, lambda { |value| {:conditions => ["users.username = ?", value]} }
+    User.scope :uname, lambda { |value| {:conditions => ["users.username = ?", value]} }
     Company.users_uname("bjohnson").proxy_options.should == User.uname("bjohnson").proxy_options.merge(:joins => :users)
   end
 
   it "should allow the use of deep foreign pre-existing named scopes" do
     pending
-    Order.named_scope :big_id, :conditions => "orders.id > 100"
+    Order.scope :big_id, :conditions => "orders.id > 100"
     Company.users_orders_big_id.proxy_options.should == Order.big_id.proxy_options.merge(:joins => {:users => :orders})
   end
 
@@ -54,17 +54,17 @@ describe Searchlogic::NamedScopes::AssociationConditions do
 
   it "should have an arity of 1 if the underlying scope has an arity of 1" do
     Company.users_orders_total_greater_than(10)
-    Company.named_scope_arity("users_orders_total_greater_than").should == Order.named_scope_arity("total_greater_than")
+    Company.scope_arity("users_orders_total_greater_than").should == Order.scope_arity("total_greater_than")
   end
 
   it "should have an arity of nil if the underlying scope has an arity of nil" do
     Company.users_orders_total_null
-    Company.named_scope_arity("users_orders_total_null").should == Order.named_scope_arity("total_null")
+    Company.scope_arity("users_orders_total_null").should == Order.scope_arity("total_null")
   end
 
   it "should have an arity of -1 if the underlying scope has an arity of -1" do
     Company.users_id_equals_any
-    Company.named_scope_arity("users_id_equals_any").should == User.named_scope_arity("id_equals_any")
+    Company.scope_arity("users_id_equals_any").should == User.scope_arity("id_equals_any")
   end
 
   it "should allow aliases" do
@@ -77,7 +77,7 @@ describe Searchlogic::NamedScopes::AssociationConditions do
 
   it "should copy over the named scope options" do
     Order.user_whatever_at_equals(1)
-    Order.named_scope_options(:user_whatever_at_equals).searchlogic_options[:skip_conversion].should == true
+    Order.scope_options(:user_whatever_at_equals).searchlogic_options[:skip_conversion].should == true
   end
 
   it "should include optional associations" do
@@ -155,7 +155,7 @@ describe Searchlogic::NamedScopes::AssociationConditions do
   end
 
   it "should automatically add string joins if the association condition is using strings" do
-    User.named_scope(:orders_big_id, :joins => User.inner_joins(:orders))
+    User.scope(:orders_big_id, :joins => User.inner_joins(:orders))
     Company.users_orders_big_id.proxy_options.should == {:joins=>[" INNER JOIN \"users\" ON users.company_id = companies.id ", " INNER JOIN \"orders\" ON orders.user_id = users.id "]}
   end
 
@@ -166,7 +166,7 @@ describe Searchlogic::NamedScopes::AssociationConditions do
   end
 
   it "should sanitize the scope on a foreign model instead of passing the raw options back to the original" do
-    Company.named_scope(:users_count_10, :conditions => {:users_count => 10})
+    Company.scope(:users_count_10, :conditions => {:users_count => 10})
     User.company_users_count_10.proxy_options.should == {:conditions => "\"companies\".\"users_count\" = 10", :joins => :company}
   end
 
@@ -205,7 +205,7 @@ describe Searchlogic::NamedScopes::AssociationConditions do
     user = User.create
     Order.create :user => user, :shipped_on => Time.now
     Order.create :shipped_on => Time.now
-    Order.named_scope :shipped_on_not_null, :conditions => ['shipped_on is not null']
+    Order.scope :shipped_on_not_null, :conditions => ['shipped_on is not null']
     user.orders.count.should == 1
     user.orders.shipped_on_not_null.shipped_on_greater_than(2.days.ago).count.should == 1
   end

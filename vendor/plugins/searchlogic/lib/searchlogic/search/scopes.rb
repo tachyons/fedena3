@@ -11,8 +11,8 @@ module Searchlogic
         end
 
         def scope_options(name)
-          klass.send(name, nil) if !klass.respond_to?(name) # We need to set up the named scope if it doesn't exist, so we can get a value for named_scope_options
-          klass.named_scope_options(name)
+          klass.send(name, nil) if !klass.respond_to?(name) # We need to set up the named scope if it doesn't exist, so we can get a value for scope_options
+          klass.scope_options(name)
         end
     end
   end

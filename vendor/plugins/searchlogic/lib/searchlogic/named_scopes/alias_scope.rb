@@ -50,7 +50,7 @@ module Searchlogic
         super || alias_scope?(name)
       end
 
-      def named_scope_options(name) # :nodoc:
+      def scope_options(name) # :nodoc:
         super || alias_scopes[name.to_sym]
       end
 

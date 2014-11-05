@@ -54,23 +54,23 @@ module Searchlogic
 
         def create_association_condition(association, condition_name, poly_class = nil)
           name = [association.name, poly_class && "#{poly_class.name.underscore}_type", condition_name].compact.join("_")
-          named_scope(name, association_condition_options(association, condition_name, poly_class))
+          scope(name, association_condition_options(association, condition_name, poly_class))
         end
 
         def association_condition_options(association, association_condition, poly_class = nil)
           klass = poly_class ? poly_class : association.klass
           raise ArgumentError.new("The #{klass} class does not respond to the #{association_condition} scope") if !klass.respond_to?(association_condition)
-          arity = klass.named_scope_arity(association_condition)
+          arity = klass.scope_arity(association_condition)
 
           if !arity || arity == 0
             # The underlying condition doesn't require any parameters, so let's just create a simple
             # named scope that is based on a hash.
             options = {}
             in_searchlogic_delegation { options = klass.send(association_condition).scope(:find) }
-            prepare_named_scope_options(options, association, poly_class)
+            prepare_scope_options(options, association, poly_class)
             options
           else
-            scope_options = klass.named_scope_options(association_condition)
+            scope_options = klass.scope_options(association_condition)
             scope_options = scope_options.respond_to?(:searchlogic_options) ? scope_options.searchlogic_options.clone : {}
             proc_args = arity_args(arity)
             arg_type = scope_options.delete(:type) || :string
@@ -84,7 +84,7 @@ module Searchlogic
                   options = scope.scope(:find) if scope
                 end
 
-                prepare_named_scope_options(options, association, poly_class)
+                prepare_scope_options(options, association, poly_class)
                 options
               }
             end_eval
@@ -110,7 +110,7 @@ module Searchlogic
           args
         end
 
-        def prepare_named_scope_options(options, association, poly_class = nil)
+        def prepare_scope_options(options, association, poly_class = nil)
           options.delete(:readonly) # AR likes to set :readonly to true when using the :joins option, we don't want that
 
           klass = poly_class || association.klass

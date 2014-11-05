@@ -282,8 +282,8 @@
 [33m	- app/controllers/employee_attendance_controller.rb
 [33m	- app/controllers/archived_student_controller.rb
 [0m
-[31m[1mnamed_scope is now just scope[0m
-[37mThe named_scope method has been renamed to just scope.
+[31m[1mscope is now just scope[0m
+[37mThe scope method has been renamed to just scope.
 [1mMore information:[0m [36mhttp://github.com/rails/rails/commit/d60bb0a9e4be2ac0a9de9a69041a4ddc2e0cc914
 
 [37mThe culprits: 

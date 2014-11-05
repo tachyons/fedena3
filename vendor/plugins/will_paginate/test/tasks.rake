@@ -50,7 +50,7 @@ def reset_invoked
 end
 
 task :rcov do
-  excludes = %w( lib/will_paginate/named_scope*
+  excludes = %w( lib/will_paginate/scope*
                  lib/will_paginate/core_ext.rb
                  lib/will_paginate.rb
                  rails* )
