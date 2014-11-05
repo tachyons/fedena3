@@ -76,7 +76,7 @@
 
           <li><div class="name"><%= p.subject %></div>
             <div class="val"><span>:</span><%= p.mark %></div>
-            <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+            <div class="delete"><%= link_to image_tag("/images/buttons/delete-new.png", :border => 0),
                 :url => {:action => "delete_previous_subject", :id => p.id},
 
                 :update => "added_subjects"%></div>
@@ -85,7 +85,7 @@
         <% end %>
       <% end %>
     </ul>
-    <%= link_to_remote "#{t('add_subject')}", :url=>{:controller=>"student",:action=>"previous_subject", :id=>@student.id}%>
+    <%= link_to "#{t('add_subject')}", :url=>{:controller=>"student",:action=>"previous_subject", :id=>@student.id}%>
     <div id="subject">
 
     </div>

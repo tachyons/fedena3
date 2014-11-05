@@ -47,7 +47,7 @@
 
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to_remote "#{t('one_click_payslip')}",:update=>"message-div",
+      <div class="link-heading"><%= link_to "#{t('one_click_payslip')}",:update=>"message-div",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :url=>{:controller=>"employee", :action=>"payslip_date_select"} %></div>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to_remote "#{t('one_click_payslip_revert')}",:update=>"message-div",
+      <div class="link-heading"><%= link_to "#{t('one_click_payslip_revert')}",:update=>"message-div",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :url=>{:controller=>"employee", :action=>"payslip_revert_date_select"},:confirm=>"#{t('revert_confirm')}" %></div>

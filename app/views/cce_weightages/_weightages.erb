@@ -38,7 +38,7 @@
           <%= link_to g.try(:cce_exam_category).try(:name), cce_weightage_path(g) %>
         </td>
         <td class="col-3">
-          <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => g.id },:method=>:get %> |  <%= link_to t("delete_text"),g,:method=>:delete,:confirm=>"Are you sure?" %></div>
+          <div class="category-edit"><%= link_to "#{t("edit_text")}", :url => { :action => 'edit', :id => g.id },:method=>:get %> |  <%= link_to t("delete_text"),g,:method=>:delete,:confirm=>"Are you sure?" %></div>
         </td>
       </tr>
     <% end %>

@@ -37,7 +37,7 @@
           <%= g.grade_point %>
         </td>
         <td class="col-3">
-          <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit_grade', :id => g.id } %> | <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_grade', :id => g.id},:confirm=>"Delete Grade #{g.name}?"  %></div>
+          <div class="category-edit"><%= link_to "#{t("edit_text")}", :url => { :action => 'edit_grade', :id => g.id } %> | <%= link_to "#{t("delete_text")}", :url => { :action => 'destroy_grade', :id => g.id},:confirm=>"Delete Grade #{g.name}?"  %></div>
         </td>
       </tr>
     <% end %>

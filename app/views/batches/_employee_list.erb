@@ -27,9 +27,9 @@
         <div class="tutor-name"><%= e.full_name %></div>
         
           <% if @emps_assigned.nil? or not @emps_assigned.include?("#{e.id}")  %>
-            <div class="remove"><%= link_to_remote "#{t('assign')}", :url => {:action => "assign_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
+            <div class="remove"><%= link_to "#{t('assign')}", :url => {:action => "assign_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
           <% else %>
-            <div class="remove"><%= link_to_remote "#{t('remove')}", :url => {:action => "remove_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
+            <div class="remove"><%= link_to "#{t('remove')}", :url => {:action => "remove_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
           <% end %>
         
       </li>

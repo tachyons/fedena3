@@ -34,14 +34,14 @@
 <% unless @reporting_employees == [] %>
 
       <div id="new-application-links">
-        <%= link_to_remote "#{t('new_leave_applications')}",
+        <%= link_to "#{t('new_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %>
       [<%= @total_leave_count %>]
       </div>
 
       <div id="all-application-links">
-        <%= link_to_remote "#{t('all_leave_applications')}",
+        <%= link_to "#{t('all_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %>
       </div>

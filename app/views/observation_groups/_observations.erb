@@ -39,16 +39,16 @@
         </td>
         <td class="col-3">
           <div class="category-edit">
-            <%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit_observation', :id => g.id }%>  |
-            <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_observation', :id => g.id},:confirm=>"Delete Co-scholastic criteria #{g.name}?"  %>
+            <%= link_to "#{t("edit_text")}", :url => { :action => 'edit_observation', :id => g.id }%>  |
+            <%= link_to "#{t("delete_text")}", :url => { :action => 'destroy_observation', :id => g.id},:confirm=>"Delete Co-scholastic criteria #{g.name}?"  %>
             <% unless i==0 %>
-              <%= link_to_remote "&#x25B2;", :url=>{:action=>'reorder',:direction=>'up',:id=>g.id,:count=>i},:method=>"post" %>
+              <%= link_to "&#x25B2;", :url=>{:action=>'reorder',:direction=>'up',:id=>g.id,:count=>i},:method=>"post" %>
             <% else %>
               &nbsp;
               &nbsp;
             <% end %>
             <% unless i+1==@observations.count %>
-              <%= link_to_remote "&#x25BC;", :url=>{:action=>'reorder',:direction=>'down',:id=>g.id,:count=>i},:method=>"post"  %>
+              <%= link_to "&#x25BC;", :url=>{:action=>'reorder',:direction=>'down',:id=>g.id,:count=>i},:method=>"post"  %>
             <% else %>
               &nbsp;
               &nbsp;

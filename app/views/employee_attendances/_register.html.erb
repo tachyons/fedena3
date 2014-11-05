@@ -19,13 +19,13 @@
 
 <div class="header">
   <div class="prev">
-    <%= link_to_remote "◄", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today-1.month)} %>
+    <%= link_to "◄", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today-1.month)} %>
   </div>
   <div class="month">
      <%= I18n.l(@today,:format=>:month_year) %>
   </div>
   <div class="next">
-    <%= link_to_remote "►", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today+1.month)} %>
+    <%= link_to "►", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today+1.month)} %>
   </div>
   <div class="extender"></div>
 </div>
@@ -61,9 +61,9 @@
         <td id="attendance-employee-<%= employee.id %>-day-<%= date %>" class="td-mark">
             <% end %>
           <% unless @absent.nil? %>
-            <%= link_to_remote('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=> 'absent themed_text') %>
+            <%= link_to('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=> 'absent themed_text') %>
           <% else %>
-            <%= link_to_remote('O', { :url => {:controller =>'employee_attendances', :action => 'new', :id=> date, :id2 =>employee.id}}, :class => 'present') %>
+            <%= link_to('O', { :url => {:controller =>'employee_attendances', :action => 'new', :id=> date, :id2 =>employee.id}}, :class => 'present') %>
           <% end %>
           <div class="date"><span class="themed_text"><%=  I18n.l(date,:format=>"%a %d")%> <div> <%= employee.full_name %></div></span>
           </div>

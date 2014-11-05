@@ -30,7 +30,7 @@ module OpenFlashChart
     OUTPUT
   end
 
-  def link_to_remote_ofc_load(link_text, div_name, url)
+  def link_to_ofc_load(link_text, div_name, url)
     fx_name = "#{link_text.gsub(" ","_")}_#{div_name.gsub(" ","_")}"
     <<-OUTPUT
     <script type="text/javascript">

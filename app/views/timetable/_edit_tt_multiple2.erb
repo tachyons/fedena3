@@ -87,7 +87,7 @@
 
                 </div>
                 <div class="employee">
-                  <%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+                  <%= link_to image_tag("/images/buttons/delete-new.png", :border => 0),
                     :url => {:action => "delete_employee2", :id => @tte.id},
                     :complete => "clear_selected_divs();",
                     :before => "Element.show('loader')",
@@ -124,12 +124,12 @@
           <%= err -%>
         <%- end -%>
         - On <%= @weekday[TimetableEntry.find(tte_id).weekday_id] %> (<%= TimetableEntry.find(tte_id).class_timing.name -%>)
-        <%= link_to_remote "#{t('continue')}", :url=> {:action=> "tt_entry_update2"},
+        <%= link_to "#{t('continue')}", :url=> {:action=> "tt_entry_update2"},
           :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}' + '&emp_id=#{errors["info"]["emp_id"]}'",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :update=> "timetable" -%> |
-        <%= link_to_remote "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate2"},
+        <%= link_to "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate2"},
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :with   => "'emp_id=#{errors["info"]["emp_id"]}' + '&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}'",

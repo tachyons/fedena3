@@ -33,7 +33,7 @@
             <%= c.name %>
           </td>
           <td class="col-5">
-            <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => c.id },:method=>:get %> | <%= link_to t("delete_text"),c,:method=>:delete,:confirm=>"Delete exam category #{c.name} ?" %></div>
+            <div class="category-edit"><%= link_to "#{t("edit_text")}", :url => { :action => 'edit', :id => c.id },:method=>:get %> | <%= link_to t("delete_text"),c,:method=>:delete,:confirm=>"Delete exam category #{c.name} ?" %></div>
           </td>
         </tr>
       <% end %>

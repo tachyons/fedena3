@@ -67,7 +67,7 @@
     </ul>
 
     <span class="reminder-link">
-      <%= link_to_remote "#{t('send_message')}",
+      <%= link_to "#{t('send_message')}",
         :update => "reminder-form",
         :url => {:controller=>"reminder", :action => "pull_reminder_form", :id=>@applied_employee.id, :id2=>@employee.id,:id3=>@applied_leave.id} if @applied_leave.approved == false and @applied_leave.viewed_by_manager == false %>
     </span>

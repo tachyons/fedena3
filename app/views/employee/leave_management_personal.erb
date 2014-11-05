@@ -36,7 +36,7 @@
   </div>
 
       <div id="individual-application-links">
-        <%= link_to_remote "#{t('my_leave_applications')}",
+        <%= link_to "#{t('my_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %>
       </div>

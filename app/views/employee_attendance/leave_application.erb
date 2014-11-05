@@ -71,10 +71,10 @@
 
       <% unless @applied_leave.viewed_by_manager == true %>
   <div class="buttons">
-      <div class="approve_button">    <%= link_to_remote "► #{t('approve')}",
+      <div class="approve_button">    <%= link_to "► #{t('approve')}",
              :url => {:action => "approve_remarks", :id=>@applied_leave.id},:html=> {:class=>'user_button'} %> </div>
 
-   <div class="cancel_button"><%= link_to_remote "► #{t('deny')}",
+   <div class="cancel_button"><%= link_to "► #{t('deny')}",
              :url => {:action => "deny_remarks", :id=>@applied_leave.id},:html=> {:class=>'user_button'}  %>
    </div>
 </div>

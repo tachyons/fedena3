@@ -26,7 +26,7 @@
         <div class="category-name"><% batch_group.grouped_batches.each do|b| %>
             <div class="category-name"><%= b.batch.name %></div>
           <% end %></div>
-        <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url=>{:controller=>"courses",:action=>"edit_batch_group", :id=>batch_group.id}  if permitted_to? :edit_batch_group, :courses %></div><div class="category-delete">   <%= link_to_remote "Delete", :url=>{:controller=>"courses",:action=>"delete_batch_group", :id=>batch_group.id}, :confirm=>"Are you sure?" if permitted_to? :delete_batch_group, :courses %></div>
+        <div class="category-edit"><%= link_to "#{t('edit_text')}", :url=>{:controller=>"courses",:action=>"edit_batch_group", :id=>batch_group.id}  if permitted_to? :edit_batch_group, :courses %></div><div class="category-delete">   <%= link_to "Delete", :url=>{:controller=>"courses",:action=>"delete_batch_group", :id=>batch_group.id}, :confirm=>"Are you sure?" if permitted_to? :delete_batch_group, :courses %></div>
       </li>
     <% end %>
   <% else %>

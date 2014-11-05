@@ -59,7 +59,7 @@
       <% end %>
     </table>
     <div>
-      <%= link_to_remote "►  #{t('reset_leave')}",:html=> {:class=>'user_button'} ,:url=>{:action=>'employee_wise_leave_reset', :id => @employee.id } %>
+      <%= link_to "►  #{t('reset_leave')}",:html=> {:class=>'user_button'} ,:url=>{:action=>'employee_wise_leave_reset', :id => @employee.id } %>
     </div>
   </div>
 </div>

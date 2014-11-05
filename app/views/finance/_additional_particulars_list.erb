@@ -16,7 +16,7 @@
 #under the License. -%>
 
 <br/>
-<div class="linker"><%= link_to_remote "#{t('add_particular')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %></div>
+<div class="linker"><%= link_to "#{t('add_particular')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %></div>
 <br/>
 
 <% unless @particulars.empty? %>
@@ -49,8 +49,8 @@
         <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
         <td class="col-3">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
-            <span class="small"> <%= link_to_remote t('delete_text'), :confirm=>t('delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
-            <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
+            <span class="small"> <%= link_to t('delete_text'), :confirm=>t('delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to t('edit_text'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
           <% else %>
             <span class="small-strike"><%= t('delete_text') %></span>
             <span class="small-strike"><%= t('edit_text') %></span>

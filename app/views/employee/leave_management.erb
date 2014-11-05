@@ -35,7 +35,7 @@
       <a href="#" class="drops" id="link_one"><%= "#{t('my_leaves')}" %> ▼</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
         <li><%= link_to t('apply'), :controller=>"employee", :action=>"leave_management" %></li>
-        <li><%= link_to_remote t('my_leaves'),
+        <li><%= link_to t('my_leaves'),
             :update => "application-list",
             :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %></li>
         <li><%= link_to "#{t('history')}", :controller=>"employee_attendance", :action=>"leave_history",:id=>@employee.id %></li>
@@ -48,7 +48,7 @@
           <a href="#" class="drops" id="link_two"><%= "#{t('my_emp')}" %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
-            <li><%= link_to_remote "#{t('all_leaves')}",
+            <li><%= link_to "#{t('all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>
@@ -59,10 +59,10 @@
           <a href="#" class="drops" id="link_two"><%= "#{t('my_emp')}" %><%= "(#{@total_leave_count})"  %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
-            <li><%= link_to_remote "#{t('new')}(#{@total_leave_count})",
+            <li><%= link_to "#{t('new')}(#{@total_leave_count})",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %></li>
-            <li><%= link_to_remote "#{t('all_leaves')}",
+            <li><%= link_to "#{t('all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>
@@ -78,7 +78,7 @@
         <a href="#" class="drops" id="link_three"><%= "#{t('all_employee')}" %>  ▼</a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
           <!-- no new leave applications of any employee -->
-          <li><%= link_to_remote "#{t('all_records')}",
+          <li><%= link_to "#{t('all_records')}",
               :update => "application-list",
               :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
         </ul>
@@ -89,10 +89,10 @@
         <a href="#" class="drops" id="link_three"><%= "#{t('all_employee')}" %><%= "(#{@all_employee_total_leave_count})"  %> ▼ </a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
           <!-- no new leave applications of any employee -->
-          <li><%= link_to_remote "#{t('new_text')}(#{@all_employee_total_leave_count})",
+          <li><%= link_to "#{t('new_text')}(#{@all_employee_total_leave_count})",
               :update => "application-list",
               :url => {:controller=>"employee_attendance",:action => "all_employee_new_leave_applications", :id=>@employee.id} %></li>
-          <li><%= link_to_remote "#{t('all_records')}",
+          <li><%= link_to "#{t('all_records')}",
               :update => "application-list",
               :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
         </ul>

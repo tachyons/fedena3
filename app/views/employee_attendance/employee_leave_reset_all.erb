@@ -42,7 +42,7 @@
       <div id="reset-box">
         <p> <%= t('reset_count_msg') %></p>
         <div id="skip">
-          <%= link_to_remote("► #{t('reset')}",
+          <%= link_to("► #{t('reset')}",
             :url => {:action =>'update_employee_leave_reset_all'}, :html => {:class=>"user_button"} ) %>
         </div>
         <div>

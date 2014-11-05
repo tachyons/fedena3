@@ -29,7 +29,7 @@
   <ul>
     <%  if permitted_to? :publish,:exam %>
       <% if @exam_group.is_published %>
-        <li><%= link_to_remote("#{t('publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>@exam_group.id,:status=>"result"},
+        <li><%= link_to("#{t('publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>@exam_group.id,:status=>"result"},
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')") %></li>
       <% end  %>

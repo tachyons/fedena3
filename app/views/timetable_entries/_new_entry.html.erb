@@ -58,7 +58,7 @@
                         </span>
                       <% end %>
                     </div>
-                    <div class="employee"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+                    <div class="employee"><%= link_to image_tag("/images/buttons/delete-new.png", :border => 0),
                         :url => {:action => "delete_employee2", :id => @tte.id},
                         :complete => "clear_selected_divs();",
                         :confirm=>t("remove_entry_confirm"),
@@ -127,21 +127,21 @@
         <%- end -%>
         - On <%= Date::DAYNAMES[Weekday.find(weekday).day_of_week].capitalize %> (<%= ClassTiming.find(class_timing).name -%>)
         <% unless @overlap.nil? %>
-          <%= link_to_remote "#{t('override')}", :url=> {:action=> "tt_entry_update2"},
+          <%= link_to "#{t('override')}", :url=> {:action=> "tt_entry_update2"},
             :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}' + '&emp_id=#{errors["info"]["emp_id"]}' + '&timetable_id=#{@tt.id}' + '&batch_id=#{@batch.id}&overwrite=1'",
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')" -%> |
-          <%= link_to_remote "#{t('retain_all')}", :url=> {:action=> "tt_entry_update2"},
+          <%= link_to "#{t('retain_all')}", :url=> {:action=> "tt_entry_update2"},
             :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}' + '&emp_id=#{errors["info"]["emp_id"]}' + '&timetable_id=#{@tt.id}' + '&batch_id=#{@batch.id}'",
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')" -%>
         <% else %>
-          <%= link_to_remote "#{t('continue')}", :url=> {:action=> "tt_entry_update2"},
+          <%= link_to "#{t('continue')}", :url=> {:action=> "tt_entry_update2"},
             :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}' + '&emp_id=#{errors["info"]["emp_id"]}' + '&timetable_id=#{@tt.id}' + '&batch_id=#{@batch.id}'",
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')" -%>
         <% end %> |
-        <%= link_to_remote "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate2"},
+        <%= link_to "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate2"},
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :with   => "'emp_id=#{errors["info"]["emp_id"]}' + '&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}'+ '&timetable_id=#{@tt.id}'",

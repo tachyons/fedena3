@@ -20,23 +20,23 @@
 <div class="header">
   <% if @config.config_value == 'Daily' %>
     <div class="prev">
-      <%= link_to_remote "◄", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today-1.month)} %>
+      <%= link_to "◄", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today-1.month)} %>
     </div>
     <div class="month">
       <%= I18n.l(@today,:format=>:month_year) %>
     </div>
     <div class="next">
-      <%= link_to_remote "►", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today+1.month)} %>
+      <%= link_to "►", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today+1.month)} %>
     </div>
   <% else %>
     <div class="prev">
-      <%= link_to_remote "◄", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today-1.month)} %>
+      <%= link_to "◄", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today-1.month)} %>
     </div>
     <div class="month">
       <%= I18n.l(@today,:format=>:month_year) %>
     </div>
     <div class="next">
-      <%= link_to_remote "►", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today+1.month)} %>
+      <%= link_to "►", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today+1.month)} %>
     </div>
   <% end %>
   <div class="extender"></div>
@@ -87,9 +87,9 @@
               <% end %>
 
               <% unless @absent.nil? %>
-                <%= link_to_remote('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class =>'absent')  %>
+                <%= link_to('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class =>'absent')  %>
               <% else %>
-                <%= link_to_remote( 'O',
+                <%= link_to( 'O',
                   {:url => {:controller =>'attendances', :action => 'new', :month_date=> date, :student_id =>student.id}}, :class=>'present' ) %>
               <% end %>
               <div class="date"><span><%=  I18n.l(date,:format=>"%a %d") %> <div> <%= student.full_name %></div></span>
@@ -109,9 +109,9 @@
                   <% end %>
 
                   <% unless @absent.nil? %>
-                    <%= link_to_remote('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class =>'absent')  %>
+                    <%= link_to('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class =>'absent')  %>
                   <% else %>
-                    <%= link_to_remote( 'O',
+                    <%= link_to( 'O',
                       {:url => {:controller =>'attendances', :action => 'new', :id=> date.id, :id2 =>student.id, :timetable_entry=>v,:month_date=>date}}, :class=>'present' ) %>
                   <% end %>
           <%#*<div class="date">%>
